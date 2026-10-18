@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SEO Command Centre — Manchester Disrepair Claims</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-muted: #f4f4f5;
+  --ink: #18181b;
+  --ink-secondary: #52525b;
+  --ink-muted: #a1a1aa;
+  --border: #e4e4e7;
+  --border-subtle: #f0f0f2;
+  --accent: #0d9488;
+  --accent-soft: #ccfbf1;
+  --accent-muted: rgba(13,148,136,0.06);
+  --success: #16a34a;
+  --success-soft: #dcfce7;
+  --warn: #d97706;
+  --warn-soft: #fef3c7;
+  --danger: #dc2626;
+  --danger-soft: #fee2e2;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.03);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b;
+    --surface: #18181b;
+    --surface-raised: #1e1e22;
+    --surface-muted: #27272a;
+    --ink: #fafafa;
+    --ink-secondary: #a1a1aa;
+    --ink-muted: #52525b;
+    --border: #27272a;
+    --border-subtle: #1e1e22;
+    --accent: #2dd4bf;
+    --accent-soft: rgba(45,212,191,0.12);
+    --accent-muted: rgba(45,212,191,0.05);
+    --success: #4ade80;
+    --success-soft: rgba(74,222,128,0.1);
+    --warn: #fbbf24;
+    --warn-soft: rgba(251,191,36,0.1);
+    --danger: #f87171;
+    --danger-soft: rgba(248,113,113,0.08);
+    --shadow: 0 1px 3px rgba(0,0,0,0.2);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b;
+  --surface: #18181b;
+  --surface-raised: #1e1e22;
+  --surface-muted: #27272a;
+  --ink: #fafafa;
+  --ink-secondary: #a1a1aa;
+  --ink-muted: #52525b;
+  --border: #27272a;
+  --border-subtle: #1e1e22;
+  --accent: #2dd4bf;
+  --accent-soft: rgba(45,212,191,0.12);
+  --accent-muted: rgba(45,212,191,0.05);
+  --success: #4ade80;
+  --success-soft: rgba(74,222,128,0.1);
+  --warn: #fbbf24;
+  --warn-soft: rgba(251,191,36,0.1);
+  --danger: #f87171;
+  --danger-soft: rgba(248,113,113,0.08);
+  --shadow: 0 1px 3px rgba(0,0,0,0.2);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  padding: 0 max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 960px; margin: 0 auto; padding: 24px 0 48px; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+.header {
+  margin-bottom: 28px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.header .site {
+  font-size: 13px;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+.timestamp {
+  font-size: 12px;
+  color: var(--ink-muted);
+  background: var(--surface-muted);
+  padding: 4px 12px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+@media (max-width: 800px) { .kpi-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 480px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+.kpi {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.kpi-label {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-muted);
+  margin-bottom: 6px;
+}
+.kpi-num {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.kpi-note { font-size: 11px; color: var(--ink-secondary); margin-top: 4px; }
+.progress-bar {
+  height: 4px;
+  background: var(--surface-muted);
+  border-radius: 2px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+.progress-fill { height: 100%; border-radius: 2px; }
+
+.alert {
+  background: var(--accent-muted);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  font-size: 13px;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  line-height: 1.6;
+}
+.alert svg { flex-shrink: 0; margin-top: 2px; }
+
+.tabs {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+.tab-nav {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tab-nav::-webkit-scrollbar { display: none; }
+.tab-btn {
+  padding: 12px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  transition: color 0.15s, border-color 0.15s;
+  margin-bottom: -1px;
+}
+.tab-btn:hover { color: var(--ink-secondary); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 500;
+}
+.pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.pill-ok { background: var(--success-soft); color: var(--success); }
+.pill-ok::before { background: var(--success); }
+.pill-warn { background: var(--warn-soft); color: var(--warn); }
+.pill-warn::before { background: var(--warn); }
+.pill-bad { background: var(--danger-soft); color: var(--danger); }
+.pill-bad::before { background: var(--danger); }
+.pill-muted { background: var(--surface-muted); color: var(--ink-muted); }
+.pill-muted::before { background: var(--ink-muted); }
+
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-muted);
+}
+.data-table td { padding: 10px 16px; border-bottom: 1px solid var(--border-subtle); }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--accent-muted); }
+.url-cell { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-secondary); }
+
+.query-item {
+  display: grid;
+  grid-template-columns: 1fr 50px 60px;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 13px;
+}
+.query-item:last-child { border-bottom: none; }
+.query-item:hover { background: var(--accent-muted); }
+.query-keyword { font-weight: 500; }
+.query-metric { text-align: right; font-variant-numeric: tabular-nums; font-weight: 500; }
+.query-head {
+  display: grid;
+  grid-template-columns: 1fr 50px 60px;
+  padding: 10px 16px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-muted);
+  font-weight: 500;
+}
+.pos-good { color: var(--success); }
+.pos-mid { color: var(--warn); }
+.pos-low { color: var(--danger); }
+
+.wf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px;
+  padding: 16px;
+}
+.wf-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-muted);
+  font-size: 13px;
+  font-weight: 500;
+}
+.wf-indicator { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.wf-indicator.on { background: var(--success); box-shadow: 0 0 0 3px var(--success-soft); }
+.wf-indicator.needs { background: var(--warn); box-shadow: 0 0 0 3px var(--warn-soft); }
+.wf-status { margin-left: auto; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; }
+
+.health-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.health-item:last-child { border-bottom: none; }
+.health-item:hover { background: var(--accent-muted); }
+.health-label { font-size: 13px; font-weight: 500; }
+.health-fixed { font-size: 12px; color: var(--success); font-weight: 500; text-decoration: line-through; text-decoration-color: var(--success); }
+
+.roadmap-step {
+  display: flex;
+  gap: 14px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.roadmap-step:last-child { border-bottom: none; }
+.roadmap-step:hover { background: var(--accent-muted); }
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.step-body { min-width: 0; }
+.step-title { font-size: 14px; font-weight: 600; }
+.step-desc { font-size: 12px; color: var(--ink-secondary); margin-top: 3px; line-height: 1.5; }
+.step-tag {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.setup-box {
+  margin: 16px;
+  padding: 16px 18px;
+  background: var(--surface-muted);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.setup-box strong { color: var(--accent); }
+.setup-box code {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1px 7px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+.section-note { padding: 14px 16px; font-size: 12px; color: var(--ink-secondary); border-bottom: 1px solid var(--border-subtle); }
+.divider-row td {
+  background: var(--surface-muted);
+  text-align: center;
+  font-size: 11px;
+  color: var(--ink-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 6px 16px;
+}
+.footer { text-align: center; padding: 24px 0 0; font-size: 11px; color: var(--ink-muted); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <div>
+    <h1>SEO Command Centre</h1>
+    <div class="site">manchesterdisrepairclaims.co.uk</div>
+  </div>
+  <span class="timestamp">Updated 17 Oct 2026</span>
+</div>
+
+<div class="kpi-grid">
+  <div class="kpi"><div class="kpi-label">Pages</div><div class="kpi-num">69</div><div class="kpi-note">crawled</div></div>
+  <div class="kpi"><div class="kpi-label">Indexed</div><div class="kpi-num" style="color:var(--success)">46</div><div class="kpi-note">of 59 inspected</div><div class="progress-bar"><div class="progress-fill" style="width:78%;background:var(--success)"></div></div></div>
+  <div class="kpi"><div class="kpi-label">Not indexed</div><div class="kpi-num" style="color:var(--warn)">13</div><div class="kpi-note">need action</div></div>
+  <div class="kpi"><div class="kpi-label">Impressions</div><div class="kpi-num">32</div><div class="kpi-note">28-day window</div></div>
+  <div class="kpi"><div class="kpi-label">Clicks</div><div class="kpi-num">0</div><div class="kpi-note">early stage</div></div>
+  <div class="kpi"><div class="kpi-label">Avg position</div><div class="kpi-num">36.8</div><div class="kpi-note">improving</div></div>
+</div>
+
+<div class="alert">
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.5" stroke="var(--accent)"/><path d="M9 5v4m0 3h.01" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/></svg>
+  <div><strong style="color:var(--accent)">All SEO fixes deployed 17 Oct.</strong> Next daily audit will confirm. 13 pages still need <strong>manual indexing requests</strong> in Google Search Console (~10/day limit).</div>
+</div>
+
+<div class="tabs">
+  <div class="tab-nav">
+    <button class="tab-btn active" data-tab="pages">Pages &amp; Indexing</button>
+    <button class="tab-btn" data-tab="queries">Search Queries</button>
+    <button class="tab-btn" data-tab="health">SEO Health</button>
+    <button class="tab-btn" data-tab="auto">Automations</button>
+    <button class="tab-btn" data-tab="roadmap">Expansion</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-pages">
+    <div style="overflow-x:auto">
+    <table class="data-table">
+      <thead><tr><th>Page</th><th>Status</th><th>Last crawl</th><th style="text-align:right">Impr.</th></tr></thead>
+      <tbody>
+        <tr><td class="url-cell">/</td><td><span class="pill pill-ok">Indexed</span></td><td>&#8212;</td><td style="text-align:right">1</td></tr>
+        <tr><td class="url-cell">/about</td><td><span class="pill pill-ok">Indexed</span></td><td>13 Oct</td><td style="text-align:right">2</td></tr>
+        <tr><td class="url-cell">/contact</td><td><span class="pill pill-ok">Indexed</span></td><td>12 Oct</td><td style="text-align:right">1</td></tr>
+        <tr><td class="url-cell">/start-claim</td><td><span class="pill pill-ok">Indexed</span></td><td>17 Sep</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/claim-calculator</td><td><span class="pill pill-ok">Indexed</span></td><td>17 Sep</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/issues</td><td><span class="pill pill-ok">Indexed</span></td><td>12 Oct</td><td style="text-align:right">1</td></tr>
+        <tr><td class="url-cell">/issues/damp-and-mould</td><td><span class="pill pill-warn">Discovered</span></td><td>&#8212;</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/issues/leaks-water-damage</td><td><span class="pill pill-ok">Indexed</span></td><td>12 Oct</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/issues/pest-infestation</td><td><span class="pill pill-ok">Indexed</span></td><td>13 Oct</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/issues/structural-damage</td><td><span class="pill pill-ok">Indexed</span></td><td>12 Oct</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/issues/electrical-issues</td><td><span class="pill pill-ok">Indexed</span></td><td>&#8212;</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/issues/heating-boiler-problems</td><td><span class="pill pill-bad">Unknown to Google</span></td><td>&#8212;</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/faqs</td><td><span class="pill pill-bad">Unknown to Google</span></td><td>&#8212;</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/blog</td><td><span class="pill pill-muted">Noindex</span></td><td>&#8212;</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/blog/how-to-report-disrepair</td><td><span class="pill pill-ok">Indexed</span></td><td>&#8212;</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/blog/compensation-damp-mould</td><td><span class="pill pill-warn">Discovered</span></td><td>&#8212;</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/blog/landlord-refusing-repairs</td><td><span class="pill pill-ok">Indexed</span></td><td>&#8212;</td><td style="text-align:right">0</td></tr>
+        <tr class="divider-row"><td colspan="4">Area pages (42 routes)</td></tr>
+        <tr><td class="url-cell">/areas</td><td><span class="pill pill-ok">Indexed</span></td><td>&#8212;</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/areas/manchester</td><td><span class="pill pill-ok">Indexed</span></td><td>&#8212;</td><td style="text-align:right">1</td></tr>
+        <tr><td class="url-cell">/areas/bolton</td><td><span class="pill pill-ok">Indexed</span></td><td>&#8212;</td><td style="text-align:right">3</td></tr>
+        <tr><td class="url-cell">/areas/bolton/horwich</td><td><span class="pill pill-warn">Discovered</span></td><td>&#8212;</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/areas/oldham/royton</td><td><span class="pill pill-warn">Discovered</span></td><td>&#8212;</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/areas/tameside/ashton-under-lyne</td><td><span class="pill pill-warn">Discovered</span></td><td>&#8212;</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/areas/tameside/denton</td><td><span class="pill pill-warn">Discovered</span></td><td>&#8212;</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/areas/tameside/hyde</td><td><span class="pill pill-warn">Discovered</span></td><td>&#8212;</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/areas/trafford/sale</td><td><span class="pill pill-warn">Discovered</span></td><td>&#8212;</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/areas/wigan</td><td><span class="pill pill-warn">Discovered</span></td><td>&#8212;</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell">/areas/wigan/leigh</td><td><span class="pill pill-bad">Unknown to Google</span></td><td>&#8212;</td><td style="text-align:right">0</td></tr>
+        <tr><td class="url-cell" style="color:var(--ink-muted);text-align:center;font-style:italic" colspan="4">+ 30 more area pages (all indexed)</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-queries">
+    <div class="section-note">17 queries appearing in Google &middot; 28-day window (18 Sep &#8211; 15 Oct) &middot; 0 clicks total</div>
+    <div class="query-head"><span>Query</span><span style="text-align:right">Impr.</span><span style="text-align:right">Position</span></div>
+    <div class="query-item"><span class="query-keyword">housing disrepair claims bolton</span><span class="query-metric">1</span><span class="query-metric pos-good">14</span></div>
+    <div class="query-item"><span class="query-keyword">housing disrepair bolton</span><span class="query-metric">2</span><span class="query-metric pos-good">15</span></div>
+    <div class="query-item"><span class="query-keyword">failsworth conveyancing solicitors</span><span class="query-metric">1</span><span class="query-metric pos-good">17</span></div>
+    <div class="query-item"><span class="query-keyword">housing disrepair solicitors manchester</span><span class="query-metric">4</span><span class="query-metric pos-mid">41</span></div>
+    <div class="query-item"><span class="query-keyword">damp proofing failsworth</span><span class="query-metric">2</span><span class="query-metric pos-mid">47</span></div>
+    <div class="query-item"><span class="query-keyword">damp surveys failsworth</span><span class="query-metric">2</span><span class="query-metric pos-mid">66</span></div>
+    <div class="query-item"><span class="query-keyword">housing disrepair solicitors</span><span class="query-metric">1</span><span class="query-metric pos-mid">71</span></div>
+    <div class="query-item"><span class="query-keyword">housing disrepair manchester</span><span class="query-metric">4</span><span class="query-metric pos-low">82</span></div>
+    <div class="query-item"><span class="query-keyword">housing disrepair claim manchester</span><span class="query-metric">3</span><span class="query-metric pos-low">96</span></div>
+    <div class="query-item"><span class="query-keyword">housing disrepair surveyor</span><span class="query-metric">1</span><span class="query-metric pos-low">99</span></div>
+    <div style="padding:16px;font-size:13px;color:var(--ink-secondary);border-top:1px solid var(--border-subtle)">
+      <strong style="color:var(--accent)">Key insight:</strong> Bolton area pages rank best (pos 14&#8211;15). Primary target <em>&#8220;housing disrepair solicitors manchester&#8221;</em> sits at position 41 &#8212; needs dedicated content and backlinks to break into page 1.
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-health">
+    <div class="section-note">Audit ran 17 Oct (before deploy). Most issues fixed in latest deploy &#8212; next audit will confirm.</div>
+    <div class="health-item"><span class="health-label">Broken internal links</span><span class="health-fixed">2 &#8594; Fixed</span></div>
+    <div class="health-item"><span class="health-label">Duplicate titles</span><span class="health-fixed">2 &#8594; Fixed</span></div>
+    <div class="health-item"><span class="health-label">Missing H1 tags</span><span class="health-fixed">1 &#8594; Fixed</span></div>
+    <div class="health-item"><span class="health-label">Titles over 60 characters</span><span class="health-fixed">45 &#8594; Fixed</span></div>
+    <div class="health-item"><span class="health-label">Descriptions over 155 characters</span><span class="health-fixed">21 &#8594; Fixed</span></div>
+    <div class="health-item"><span class="health-label">Descriptions too short</span><span class="health-fixed">3 &#8594; Fixed</span></div>
+    <div class="health-item"><span class="health-label">Article schema missing image</span><span class="health-fixed">6 &#8594; Fixed</span></div>
+    <div class="health-item"><span class="health-label">No canonical (legal pages)</span><span class="pill pill-muted" style="flex-shrink:0">By design</span></div>
+    <div class="health-item"><span class="health-label">No OG tags on /admin</span><span class="pill pill-muted" style="flex-shrink:0">Internal page</span></div>
+  </div>
+
+  <div class="tab-panel" id="tab-auto">
+    <div class="section-note">GitHub Actions workflows powering the SEO pipeline</div>
+    <div class="wf-grid">
+      <div class="wf-chip"><span class="wf-indicator on"></span>seo-daily<span class="wf-status" style="color:var(--success)">Running</span></div>
+      <div class="wf-chip"><span class="wf-indicator on"></span>seo-weekly<span class="wf-status" style="color:var(--success)">Running</span></div>
+      <div class="wf-chip"><span class="wf-indicator on"></span>seo-backlinks<span class="wf-status" style="color:var(--success)">Dry-run</span></div>
+      <div class="wf-chip"><span class="wf-indicator on"></span>seo-check<span class="wf-status" style="color:var(--success)">Ready</span></div>
+      <div class="wf-chip"><span class="wf-indicator on"></span>seo-implement<span class="wf-status" style="color:var(--success)">Ready</span></div>
+      <div class="wf-chip"><span class="wf-indicator on"></span>seo-review<span class="wf-status" style="color:var(--success)">Ready</span></div>
+      <div class="wf-chip"><span class="wf-indicator needs"></span>seo-agent<span class="wf-status" style="color:var(--warn)">Needs setup</span></div>
+      <div class="wf-chip"><span class="wf-indicator needs"></span>seo-automerge<span class="wf-status" style="color:var(--warn)">Needs setup</span></div>
+      <div class="wf-chip"><span class="wf-indicator on"></span>Deploy (cPanel)<span class="wf-status" style="color:var(--success)">Active</span></div>
+    </div>
+    <div class="setup-box">
+      <strong>To activate full automation:</strong><br>
+      GitHub repo &#8594; Settings &#8594; Secrets and variables &#8594; Actions<br><br>
+      <strong>Variables:</strong><br>
+      <code>SEO_AGENT</code> = <code>true</code> &#8212; enables AI strategist + content creation<br>
+      <code>SEO_AUTOMERGE</code> = <code>true</code> &#8212; auto-merges approved content PRs<br>
+      <code>BACKLINKS_LIVE</code> = <code>true</code> &#8212; activates directory submissions<br><br>
+      <strong>Secret:</strong><br>
+      <code>ANTHROPIC_API_KEY</code> or <code>CLAUDE_CODE_OAUTH_TOKEN</code> &#8212; powers AI agents
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-roadmap">
+    <div class="section-note">Prioritised expansion plan to drive local traffic and sales inquiries</div>
+    <div class="roadmap-step">
+      <div class="step-num" style="background:var(--danger-soft);color:var(--danger)">1</div>
+      <div class="step-body">
+        <div class="step-title">Request indexing for 13 pages</div>
+        <div class="step-desc">Open Google Search Console and click &#8220;Request Indexing&#8221; for each not-indexed URL. Limit is ~10/day &#8212; do 10 today, 3 tomorrow.</div>
+        <span class="step-tag" style="background:var(--danger-soft);color:var(--danger)">Manual action needed</span>
+      </div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-num" style="background:var(--accent-soft);color:var(--accent)">2</div>
+      <div class="step-body">
+        <div class="step-title">Add 20+ new town pages</div>
+        <div class="step-desc">Droylsden, Mossley, Irlam, Worsley, Marple, Hazel Grove, Ramsbottom, Tottington, Milnrow and more. Each targets &#8220;housing disrepair [town]&#8221;.</div>
+        <span class="step-tag" style="background:var(--accent-soft);color:var(--accent)">Ready to build</span>
+      </div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-num" style="background:var(--accent-soft);color:var(--accent)">3</div>
+      <div class="step-body">
+        <div class="step-title">6 new blog posts</div>
+        <div class="step-desc">Council tenant rights, no win no fee explained, Awaab&#8217;s Law guide, housing association vs private landlord, evidence gathering, emergency repairs.</div>
+        <span class="step-tag" style="background:var(--accent-soft);color:var(--accent)">Ready to write</span>
+      </div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-num" style="background:var(--accent-soft);color:var(--accent)">4</div>
+      <div class="step-body">
+        <div class="step-title">High-value landing pages</div>
+        <div class="step-desc">&#8220;No win no fee housing disrepair&#8221;, &#8220;housing disrepair surveyor Manchester&#8221;, &#8220;council housing disrepair claim&#8221;.</div>
+        <span class="step-tag" style="background:var(--accent-soft);color:var(--accent)">Ready to build</span>
+      </div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-num" style="background:var(--warn-soft);color:var(--warn)">5</div>
+      <div class="step-body">
+        <div class="step-title">Activate AI content automation</div>
+        <div class="step-desc">Set SEO_AGENT variable + API key. AI agent proposes topics and drafts content weekly.</div>
+        <span class="step-tag" style="background:var(--warn-soft);color:var(--warn)">Needs API key</span>
+      </div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-num" style="background:var(--warn-soft);color:var(--warn)">6</div>
+      <div class="step-body">
+        <div class="step-title">Activate live backlink submissions</div>
+        <div class="step-desc">Set BACKLINKS_LIVE=true to start submitting to free legal directories.</div>
+        <span class="step-tag" style="background:var(--warn-soft);color:var(--warn)">Set variable to activate</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">SEO Command Centre &middot; Auto-updated with each daily seo-autopilot run</div>
+
+</div>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
